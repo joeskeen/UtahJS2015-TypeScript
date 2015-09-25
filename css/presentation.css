@@ -1,0 +1,21 @@
+.spacer {
+	width: 20px;
+	height: 20px;
+}
+div.v-centered, div.centered {
+	margin-top: auto;
+	margin-bottom: auto;
+}
+div.h-centered, div.centered {
+	margin-left: auto;
+	margin-right: auto;
+}
+.smallLogo {
+	width: 150px;
+}
+.logo {
+	width: 200px;
+}
+.reveal section img {
+	background-color: white;
+}

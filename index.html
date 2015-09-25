@@ -1,0 +1,272 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>Using TypeScript in Your JavaScript Projects</title>
+
+		<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+		<meta name="author" content="Joe Skeen">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+		<link rel="shortcut icon" href="http://www.typescriptlang.org/favicon.ico" />
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/black.css" id="theme">
+		<link rel="stylesheet" href="css/presentation.css" id="theme">
+
+		<!-- Code syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+		<div style="position: absolute; left: 15px; bottom: 15px; z-index: 100; width: auto; display: flex; flex-flow: row; font-family: sans-serif">
+			<img src="http://conf.utahjs.com/assets/img/logo.png" style="vertical-align: middle" />
+			<div class="spacer"></div>
+			<div style="vertical-align: middle; margin-top: auto; margin-bottom: auto;">
+				<span style="color: red; font-weight: bold; font-family: sans-serif;">2015 UtahJS Conference</span><br />
+				<i style="color: darkgray; font-size: small">
+					Friday September 25, 2015<br />
+					Downtown Salt Lake City Library
+				</i>
+			</div>
+		</div>
+		<div style="position: absolute; right: 100px; bottom: 15px; z-index: 100; color: gray;">
+			<span id="timeRemaining"></span>
+			<script type="text/javascript">
+				var timeRemaining = document.getElementById('timeRemaining');
+				var endTime = new Date(2015, 8, 25, 15, 20, 0).getTime();
+				updateTime();
+				
+				function updateTime() {
+					var now = new Date().getTime();
+					var remaining = endTime - now;
+					var totalSeconds = Math.floor(remaining / 1000);
+					var totalMinutes = Math.floor(totalSeconds / 60);
+					var minutes = totalMinutes % 60;
+					var totalHours = Math.floor(totalMinutes / 60);
+					timeRemaining.innerText = totalHours + " : " + minutes;
+					setTimeout(updateTime, 1000);
+				}
+			</script>
+		</div>
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+				<section>
+					<h1>Using TypeScript</h1>
+					<h3>in your JavaScript projects</h3>
+					<p>
+						<small>By <a href="http://hackhands.com/joeskeen">Joe Skeen</a> / <a href="http://twitter.com/joeskeenjr">@joeskeenjr</a></small>
+					</p>
+				</section>
+
+				<section>
+					<h2>About Me</h2>
+					<section>
+						<div style="display: flex; flex-flow: row;">
+							<img data-src="http://www.gravatar.com/avatar/7e9bcd071bd11151f8d857378be04d0d.jpg?s=250" />
+							<div class="spacer"></div>
+							<div class="centered">
+								<p>Passionate developer and evangelist</p>
+								<p>Have worked with JavaScript,<br />TypeScript, C#, Java, and a<br />handful of other languages</p>
+							</div>
+						</div>
+					</section>
+					<section>
+						<h3>Places I've worked for</h3>
+						
+						<img data-src="http://cdn.practicelink.com/content/clientimages/2122/intermountainhealthcare.jpg" 
+							 style="height: 150px; width: auto;" />
+						<div style="display: flex; flex-flow: row;">
+							<div style="flex:1"></div>
+							<div class="v-centered">
+								<img class="smallLogo centered" data-src="http://www.sdmmag.com/ext/resources/SDM_Newswire_Images/vivintlogo-inbody.gif" />
+							</div>
+							<div class="spacer"></div>
+							<div class="v-centered">
+								<img class="smallLogo centered" data-src="http://digitalcameratimes.com/wp-content/uploads/2012/08/NCR_logo.jpg" />
+							</div>
+							<div class="spacer"></div>
+							<div class="v-centered">
+								<img class="smallLogo centered" data-src="https://cdn.evbuc.com/images/206727/30857171711/1/logo.jpg" />
+							</div>
+							<div style="flex:1"></div>
+						</div>
+					</section>
+					<section>
+						<h3>Community</h3>
+						<div style="display: flex; flex-flow: row;">
+							<div style="flex:1"></div>
+							<div class="v-centered">
+								<img style="height: 75px" data-src="https://cdn.evbuc.com/images/12233972/31007325481/1/logo.png" />
+							</div>
+							<div class="spacer"></div>
+							<div class="v-centered">
+								<img style="height: 75px" data-src="http://photos4.meetupstatic.com/photos/event/d/c/d/4/global_328016532.jpeg" />
+							</div>
+							<div class="spacer"></div>
+							<div class="v-centered">
+								<img style="height: 75px" data-src="http://conf.utahjs.com/assets/img/logo.png" />
+							</div>
+							<div style="flex:1"></div>
+						</div>
+						<div>
+							<img data-src="https://tse2.mm.bing.net/th?id=JN.GRPyESnQSDTc9cqbL5XuPA&pid=15.1" style="height:55px; vertical-align: middle;"/>
+							<span style="font-size: smaller">DefinitelyTyped top 100 contributors</span>
+						</div>
+						<img style="height: 100px; width: auto; border: 0; background: none;" 
+							 data-src="https://hackhands.com/assets/branding/hackhands_ps_white.svg" /><br />
+						<a style="font-size: smaller" href="https://hackhands.com/joeskeen/">https://hackhands.com/joeskeen/</a>	
+					</section>
+				</section>
+				
+				<section>
+					<h2>So... What is TypeScript?</h2>
+					<section>
+						<div class="fragment">
+						<p class="fragment">Open-source language</p>
+						<p class="fragment">Superset of JavaScript</p>
+						<p class="fragment">Adds ES6+ features</p>
+						<p class="fragment">Adds optional static typing</p>
+						</div>
+					</section>
+					<section>
+						<div class="fragment">
+							<h3>A Productivity Tool</h3>
+							<h4>To help you write better JavaScript</h4>
+						</div>
+					</section>
+				</section>
+				
+				<section>
+					<h2>We don't need no stinking types in JavaScript!</h2>
+				</section>
+				
+				<section>
+					<h2 class="fragment">There are already types in JavaScript!</h2>
+				</section>
+				
+				<section>
+					<section>
+						<img src="https://tse1.mm.bing.net/th?id=JN.sMY6U0xuu2EfxeIb0GKsnQ&pid=15.1" />
+					</section>
+				</section>
+				
+				<section>	
+					<section>
+						<ul class="fragment">
+							<li>boolean</li>
+							<li>number</li>
+							<li>string</li>
+							<li>object</li>
+							<li>undefined</li>
+						</ul>
+						<h3 class="fragment">Types are not <i>exposed</i> through the language.</h3>
+					</section>
+				</section>
+				
+				<section>
+					<blockquote>
+						TypeScript provides a <i>gradual</i> typing system for typing <u>where you need it</u>.
+					</blockquote>
+				</section>
+				
+				<section>
+					<video src="media/TypeScript_MiskoAndBrad.mp4" controls="true"></video>
+				</section>
+				
+				<section>
+					<h2>Why?</h2>
+					<section>
+						<h4>Sometimes JavaScript projects start small...</h4>
+						<img src="media/dog_small.png" style="width: 50%" />
+					</section>
+					<section>
+						<h4>...but they grow up.</h4>
+						<img src="media/dog_big.png" style="width: 50%" />
+					</section>
+				</section>
+				
+				<section>
+					<h2>Why?</h2>
+					<h4>Low barrier to entry</h4>
+					<p>Your existing JavaScript code is already valid TypeScript</p>
+				</section>
+				
+				<section>
+					<img src="media/editorSupport.png" style="width: 75%" />
+				</section>
+				
+				<section>
+					<img src="media/definitelyTyped.png" style="width: 75%;" />
+					<h4><a href="https://github.com/borisyankov/DefinitelyTyped" target="new">https://github.com/borisyankov/DefinitelyTyped</a></h4>
+					<h4><a href="http://definitelytyped.org/tsd/" target="new">http://definitelytyped.org/tsd/</a></h4>
+				</section>
+				
+				<section>
+					<h4>Enough talk, let's see code!</h4>
+					<img src="http://cdn.hark.com/images/000/307/482/307482/original.jpg" style="width: 75%" />
+				</section>
+				
+				<section>
+					<h2>Questions</h2>
+				</section>
+				
+				<section>
+					<h2>The End</h2>
+					<h4>https://github.com/joeskeen</h4>
+					<h4>https://hackhands.com/joeskeen</h4>
+				</section>
+			</div>
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+
+			// Full list of configuration options available at:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+				// Optional reveal.js plugins
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true },
+					{ src: 'plugin/notes/notes.js', async: true }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>

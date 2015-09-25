@@ -1,0 +1,3 @@
+$('div').each(function (div) {
+	
+});
