@@ -1,3 +1,3 @@
-$('div').each(function (div) {
-	
+$('div').each(function (index, div) {
+	index.
 });
